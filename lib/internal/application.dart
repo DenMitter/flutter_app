@@ -9,15 +9,15 @@ final _router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => IntroScreen(),
+      builder: (context, state) => const IntroScreen(),
     ),
     GoRoute(
       path: '/home',
-      builder: (context, state) => HomeScreen(),
+      builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
       path: '/detail',
-      builder: (context, state) => DetailScreen(),
+      builder: (context, state) => const DetailScreen(),
     ),
   ],
 );
@@ -29,7 +29,6 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Roboto'),
       routerConfig: _router,
     );
   }
