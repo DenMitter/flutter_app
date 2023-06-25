@@ -27,8 +27,34 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 35),
+            child: NavigationBar(
+              backgroundColor: const Color(0x00FFFFFF),
+              destinations: const <Widget>[
+                NavigationDestination(
+                  icon: Icon(Icons.explore),
+                  label: 'All',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.commute),
+                  label: 'Sweets',
+                ),
+                NavigationDestination(
+                  selectedIcon: Icon(Icons.bookmark),
+                  icon: Icon(Icons.bookmark_border),
+                  label: 'Cakes',
+                ),
+                NavigationDestination(
+                  selectedIcon: Icon(Icons.bookmark),
+                  icon: Icon(Icons.bookmark_border),
+                  label: 'Candey',
+                ),
+              ],
+            ),
+          ),
           const Padding(
-            padding: EdgeInsets.only(top: 81, left: 75, right: 75),
+            padding: EdgeInsets.only(top: 21, left: 75, right: 75),
             child: TextField(
               style: TextStyle(color: Color(0xFFF9F3FF)),
               cursorColor: Color(0xFFF9F3FF),
