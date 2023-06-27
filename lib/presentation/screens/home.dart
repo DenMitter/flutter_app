@@ -29,29 +29,59 @@ class HomeScreen extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 35),
-            child: NavigationBar(
-              backgroundColor: const Color(0x00FFFFFF),
-              destinations: const <Widget>[
-                NavigationDestination(
-                  icon: Icon(Icons.explore),
-                  label: 'All',
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 7, right: 7),
+                  child: MaterialButton(
+                    color: const Color(0x96F9F3FF),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                    onPressed: () {},
+                    elevation: 0,
+                    child: const Text("All", style: TextStyle(color: Colors.white),),
+                  ),
                 ),
-                NavigationDestination(
-                  icon: Icon(Icons.commute),
-                  label: 'Sweets',
+                Padding(
+                  padding: const EdgeInsets.only(left: 7, right: 7),
+                  child: MaterialButton(
+                    // color: const Color(0x96F9F3FF),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                    onPressed: () {},
+                    elevation: 0,
+                    child: const Text("Sweets", style: TextStyle(color: Colors.white),),
+                  ),
                 ),
-                NavigationDestination(
-                  selectedIcon: Icon(Icons.bookmark),
-                  icon: Icon(Icons.bookmark_border),
-                  label: 'Cakes',
+                Padding(
+                  padding: const EdgeInsets.only(left: 7, right: 7),
+                  child: MaterialButton(
+                    // color: const Color(0x96F9F3FF),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                    onPressed: () {},
+                    child: const Text("Cakes", style: TextStyle(color: Colors.white),),
+                    elevation: 0,
+                  ),
                 ),
-                NavigationDestination(
-                  selectedIcon: Icon(Icons.bookmark),
-                  icon: Icon(Icons.bookmark_border),
-                  label: 'Candey',
-                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 7, right: 7),
+                  child: MaterialButton(
+                    // color: const Color(0x96F9F3FF),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                    onPressed: () {},
+                    child: const Text("Candey", style: TextStyle(color: Colors.white),),
+                    elevation: 0,
+                  ),
+                )
               ],
-            ),
+              )
           ),
           const Padding(
             padding: EdgeInsets.only(top: 21, left: 75, right: 75),
