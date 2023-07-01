@@ -9,7 +9,7 @@ final _router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const IntroScreen(),
+      builder: (context, state) => const DetailScreen(title: '', description: '', price: 0, image: ''),
     ),
     GoRoute(
       path: '/home',
@@ -17,7 +17,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/detail',
-      builder: (context, state) => const DetailScreen(),
+      builder: (context, state) => const DetailScreen(title: '', description: '', price: 0, image: ''),
     ),
   ],
 );
