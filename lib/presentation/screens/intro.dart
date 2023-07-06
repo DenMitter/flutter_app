@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/domain/basket.dart';
 import 'package:flutter_app/presentation/screens/home.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -25,7 +26,7 @@ class IntroScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 75),
             child: ElevatedButton(
-                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);}, 
+                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(cart: Cart(valueShop: 0),)),);}, 
                     // ignore: sort_child_properties_last
                     child: const Text('Get Started', style: TextStyle(fontSize: 18, color: Color(0xFFFFFFFF)),),
                     style: ElevatedButton.styleFrom(

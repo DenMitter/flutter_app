@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/presentation/screens/detail.dart';
+import 'package:flutter_app/domain/basket.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final Cart cart;
+  const HomeScreen({super.key, required this.cart});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(     
       backgroundColor: const Color(0xFFFCB495),
       appBar: AppBar(
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [Image(image: NetworkImage("/assets/home/burger.png"))],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: [Image(image: NetworkImage("/assets/home/basket.png"))],
+              children: [
+                const Image(image: NetworkImage("/assets/home/basket.png")),
+                Text(cart.valueShop.toString()),
+              ],
             ),
           ],
         ),
@@ -114,27 +119,6 @@ class HomeScreen extends StatelessWidget {
               ],
               )
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     ListView(
-          //       children: const [
-          //         ListTile(
-          //           title: Text('All'),
-          //         ),
-          //         ListTile(
-          //           title: Text('Sweets'),
-          //         ),
-          //         ListTile(
-          //           title: Text('Cakes'),
-          //         ),
-          //         ListTile(
-          //           title: Text('Candey'),
-          //         ),
-          //       ],
-          //     ),
-          //   ],
-          // ),
           Stack(
             // padding: const EdgeInsets.only(top: 81),
             children: [ 

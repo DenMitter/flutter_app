@@ -3,21 +3,22 @@ import 'package:flutter_app/presentation/screens/detail.dart';
 import 'package:flutter_app/presentation/screens/home.dart';
 import 'package:flutter_app/presentation/screens/intro.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_app/domain/basket.dart';
 
 // GoRouter configuration
 final _router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const DetailScreen(title: '', description: '', price: 0, image: ''),
+      builder: (context, state) => const IntroScreen(),
     ),
     GoRoute(
       path: '/home',
-      builder: (context, state) => const HomeScreen(),
+      builder: (context, state) => const HomeScreen(cart: Cart(valueShop: 0)),
     ),
     GoRoute(
       path: '/detail',
-      builder: (context, state) => const DetailScreen(title: '', description: '', price: 0, image: ''),
+      builder: (context, state) => DetailScreen(title: '', description: '', price: 0, image: ''),
     ),
   ],
 );
