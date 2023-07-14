@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/presentation/screens/detail.dart';
-import 'package:flutter_app/presentation/screens/home.dart';
-import 'package:flutter_app/presentation/screens/intro.dart';
+import 'package:FoodExploer/presentation/screens/detail.dart';
+import 'package:FoodExploer/presentation/screens/home.dart';
+import 'package:FoodExploer/presentation/screens/intro.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_app/domain/basket.dart';
+import 'package:FoodExploer/domain/basket.dart';
+import 'package:FoodExploer/presentation/widgets/cart_screen.dart';
 
 // GoRouter configuration
 final _router = GoRouter(
@@ -14,11 +15,15 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/home',
-      builder: (context, state) => const HomeScreen(cart: Cart(valueShop: 0)),
+      builder: (context, state) => const HomeScreen(cart: AddCart(valueShop: 0)),
     ),
     GoRoute(
       path: '/detail',
-      builder: (context, state) => DetailScreen(title: '', description: '', price: 0, image: ''),
+      builder: (context, state) => const DetailScreen(title: '', description: '', price: 0, image: ''),
+    ),
+    GoRoute(
+      path: '/cart',
+      builder: (context, state) => CartScreen(cartItems: [CartItem(name: "Item 1", price: 10.0, quantity: 2), CartItem(name: "Item 2", price: 15.0, quantity: 1)]),
     ),
   ],
 );

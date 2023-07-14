@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/presentation/screens/home.dart';
-import 'package:flutter_app/domain/basket.dart';
+import 'package:FoodExploer/presentation/screens/home.dart';
+import 'package:FoodExploer/presentation/widgets/cart_screen.dart';
+import 'package:FoodExploer/domain/basket.dart';
 
 class DetailScreen extends StatefulWidget {
   final String title;
   final String description;
   final double price;
   final String image;
+  final List<CartItem>? cartItems;
 
   const DetailScreen({
     Key? key,
@@ -14,6 +16,7 @@ class DetailScreen extends StatefulWidget {
     required this.description,
     required this.price,
     required this.image,
+    this.cartItems,
   }) : super(key: key);
 
   @override
@@ -37,20 +40,26 @@ class _DetailScreenState extends State<DetailScreen> {
       }
     });
   }
+  Cart cart = Cart();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
       appBar: AppBar(
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [Image(image: NetworkImage("/assets/detail/arrow left.png"))],
+            InkWell(
+              onTap: () { 
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(cart: AddCart(valueShop: valueShop))));
+              },
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [Image(image: NetworkImage("/assets/detail/arrow left.png"))],
+              ),
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [Image(image: NetworkImage("/assets/detail/nav item right.png"))],
             ),
@@ -80,12 +89,12 @@ class _DetailScreenState extends State<DetailScreen> {
                       Text(
                         widget.title,
                         textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold, color: Color(0xFF2A334B)),
+                        style: const TextStyle(fontSize: 27, fontWeight: FontWeight.bold, color: Color(0xFF2A334B)),
                       ),
                       Text(
                         widget.description,
                         textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: 14, color: Color(0xFF2A334B)),
+                        style: const TextStyle(fontSize: 14, color: Color(0xFF2A334B)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 12),
@@ -97,13 +106,13 @@ class _DetailScreenState extends State<DetailScreen> {
                               height: 45,
                               width: 61,
                               padding: const EdgeInsets.only(top: 15, left: 14),
+                              decoration: const BoxDecoration(
+                                color: Color(0x88FFA595),
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(51), bottomLeft: Radius.circular(51)),
+                              ),
                               child: Text(
                                 "\$${widget.price}",
-                                style: TextStyle(color: Color(0xFFFFFFFF)),
-                              ),
-                              decoration: const BoxDecoration(
-                                color: Color.fromARGB(137, 255, 165, 149),
-                                borderRadius: BorderRadius.only(topLeft: Radius.circular(51), bottomLeft: Radius.circular(51)),
+                                style: const TextStyle(color: Color(0xFFFFFFFF)),
                               ),
                             )
                           ],
@@ -136,12 +145,15 @@ class _DetailScreenState extends State<DetailScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Image(image: NetworkImage('/assets/detail/like.png')),
-                      Text(valueShop.toString()),
                       Row(
                         children: [
                           InkWell(
                             onTap: incrementCounter,
                             child: const Image(image: NetworkImage('/assets/detail/plus.png'))
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 12, right: 12),
+                            child: Text(valueShop.toString()),
                           ),
                           InkWell(
                             onTap: decrementCounter,
@@ -158,22 +170,36 @@ class _DetailScreenState extends State<DetailScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 75),
             child: ElevatedButton(
+              // onPressed: () {
+              //   cart.addToCart(CartItem(name: widget.title, price: widget.price, quantity: valueShop));
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => HomeScreen(cart: AddCart(valueShop: valueShop))),
+              //   );
+              // },
               onPressed: () {
+                widget.cartItems?.add(
+                  CartItem(
+                    name: widget.title,
+                    price: widget.price,
+                    quantity: valueShop,
+                  ),
+                );
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen(cart: Cart(valueShop: valueShop))),
+                  MaterialPageRoute(builder: (context) => CartScreen(cartItems: widget.cartItems ?? [])),
                 );
               },
-              child: const Text(
-                'Buy now',
-                style: TextStyle(fontSize: 18, color: Color(0xFFFFFFFF)),
-              ),
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(385, 61),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
                 backgroundColor: const Color(0xFF2A334B),
+              ),
+              child: const Text(
+                'Add To Cart',
+                style: TextStyle(fontSize: 18, color: Color(0xFFFFFFFF)),
               ),
             ),
           )

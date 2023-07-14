@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/presentation/screens/detail.dart';
-import 'package:flutter_app/domain/basket.dart';
+import 'package:FoodExploer/presentation/screens/detail.dart';
+import 'package:FoodExploer/domain/basket.dart';
+import 'package:FoodExploer/presentation/widgets/cart_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  final Cart cart;
+  final AddCart cart;
   const HomeScreen({super.key, required this.cart});
 
   @override
@@ -18,12 +19,21 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [Image(image: NetworkImage("/assets/home/burger.png"))],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                const Image(image: NetworkImage("/assets/home/basket.png")),
-                Text(cart.valueShop.toString()),
-              ],
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CartScreen(cartItems: [CartItem(name: "Item 1", price: 10.0, quantity: 2), CartItem(name: "Item 2", price: 15.0, quantity: 1)]),
+                  ),
+                );
+              },
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Image(image: NetworkImage("/assets/home/basket.png")),
+                ],
+              ),
             ),
           ],
         ),
@@ -100,8 +110,8 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18.0),
                     ),
                     onPressed: () {},
-                    child: const Text("Cakes", style: TextStyle(color: Colors.white),),
                     elevation: 0,
+                    child: const Text("Cakes", style: TextStyle(color: Colors.white),),
                   ),
                 ),
                 Padding(
@@ -112,8 +122,8 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18.0),
                     ),
                     onPressed: () {},
-                    child: const Text("Candey", style: TextStyle(color: Colors.white),),
                     elevation: 0,
+                    child: const Text("Candey", style: TextStyle(color: Colors.white),),
                   ),
                 )
               ],
@@ -145,7 +155,7 @@ class HomeScreen extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => DetailScreen(
+                            MaterialPageRoute(builder: (context) => const DetailScreen(
                               title: "Cup Cake",
                               description: "Flavoured cupcakes with\nspecial icing",
                               price: 5,
@@ -234,7 +244,7 @@ class HomeScreen extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => DetailScreen(
+                            MaterialPageRoute(builder: (context) => const DetailScreen(
                               title: "Donut",
                               description: "Flavoured cupcakes with\nspecial icing",
                               price: 3,
@@ -323,7 +333,7 @@ class HomeScreen extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => DetailScreen(
+                            MaterialPageRoute(builder: (context) => const DetailScreen(
                               title: "Macaron",
                               description: "Flavoured cupcakes with\nspecial icing",
                               price: 6,
@@ -408,22 +418,32 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: 45),
-                            child: Row(
-                              children: [
-                                Image(image: NetworkImage('/assets/home/left arrow.png')),
-                                Image(image: NetworkImage('/assets/home/right arrow.png')),
-                              ],
+                      SizedBox(
+                        width: 185,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 45),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  InkWell(
+                                    onTap: () {},
+                                    child: const Image(image: NetworkImage('/assets/home/left arrow.png'))
+                                  ),
+                                  InkWell(
+                                    onTap: () {},
+                                    child: const Image(image: NetworkImage('/assets/home/right arrow.png'))
+                                  ),
+                                ],
+                              )
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 21),
+                              child: Image(image: NetworkImage('/assets/home/line.png')),
                             )
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 21),
-                            child: Image(image: NetworkImage('/assets/home/line.png')),
-                          )
-                        ],
+                          ],
+                        ),
                       )
                     ],
                   ),
