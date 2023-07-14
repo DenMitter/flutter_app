@@ -187,7 +187,8 @@ class _DetailScreenState extends State<DetailScreen> {
                 );
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CartScreen(cartItems: widget.cartItems ?? [])),
+                  // MaterialPageRoute(builder: (context) => CartScreen(cartItems: widget.cartItems ?? [])),
+                  MaterialPageRoute(builder: (context) => CartScreen(cartItems: [CartItem(name: widget.title, price: widget.price, quantity: valueShop,)])),
                 );
               },
               style: ElevatedButton.styleFrom(
